@@ -37,7 +37,6 @@ return{
 }
 },
 mounted(){
-    console.log(this.axios.defaults);
     this.axios.get('/Users/GetTopNewGames').then( (res)=>{
         this.Msg = res.statusText;
         this.NewGameList = res.data;
@@ -57,8 +56,7 @@ methods:
 {
     handleDetail:function(id)
     {
-    this.$router.push('/NewsGames/Detail');
-    console.log(id);
+    this.$router.push('/NewGames/Detail/1/'+id);
     },
     handleScroll:function(pos){
          if(pos.y > 15 ){
@@ -85,7 +83,7 @@ methods:
 </script>
 
 <style scoped>
-#Content ._body{flex:1;overflow: auto;}
+#content ._body{flex:1;overflow: auto;}
 ._body ul{margin:0 12px;overflow: hidden; }
 ._body ul li{margin-top:12px;display: flex;align-items:center;border-bottom: 1px #e6e6e6 solid;padding-bottom: 10px;}
 ._body .pic_show{width:64px;height:90px;overflow: hidden;}

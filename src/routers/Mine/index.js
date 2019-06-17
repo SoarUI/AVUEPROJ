@@ -4,7 +4,7 @@ export default {
       path: '/Mine',
       name: 'Mine',
      // component: HelloWorld
-     component : ()=>import('@/components/Mine'),
+     component : ()=>import('@/views/Mine'),
      children:[
            {
                  path: 'Login',
@@ -22,7 +22,7 @@ export default {
                   component :() =>import('@/components/Mine/Center.vue'),
             },
            {
-            path : '/',
+            path : '/Mine',
             redirect : '/Mine/Center'
       }
      ]
