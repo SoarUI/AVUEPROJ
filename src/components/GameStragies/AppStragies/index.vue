@@ -39,7 +39,7 @@ mounted(){
 </script>
 
 <style scoped>
-#Content ._body{flex:1;overflow: auto;}
+#content ._body{flex:1;overflow: auto;}
 ._body ul{margin:0 12px;overflow:hidden;}
 ._body ul li{margin-top:12px;display: flex;align-items: center;border-bottom: 1px #e6e6e6 solid;padding-bottom: 10px;}
 ._body.pic_show{width:64px;height:90px;}

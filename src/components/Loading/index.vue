@@ -1,7 +1,7 @@
 <template>
     <div id="loader-container">
-  <p id="loadingText">Loading</p>
-</div>
+      <p id="loadingText">Loading</p>
+    </div>
 </template>
 
 <script>
@@ -11,11 +11,9 @@ name:'Loading'
 </script>
 
 <style scoped>
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,800,200);
 body {
   background-color: #3498db;
 }
-
 #loader-container {
   width: 200px;
   height: 200px;
@@ -33,7 +31,7 @@ body {
 }
 
 #loadingText {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Arial', sans-serif;
   font-weight: bold;
   font-size: 2em;
   position: absolute;

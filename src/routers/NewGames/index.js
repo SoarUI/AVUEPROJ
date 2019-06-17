@@ -3,8 +3,7 @@ export default {
   
       path: '/NewGames',
       name: 'NewGames',
-     // component: HelloWorld
-     component : ()=>import('@/components/NewGames'),
+     component : ()=>import('@/views/NewGames'),
      children :[
            {
                  path: 'AppGame',
@@ -25,7 +24,41 @@ export default {
                   component : ()=>import('@/components/NewGames/PCGame')
             },
             {
-                  path : '/',
+                  path:'Detail/1/:Id',
+                  name:'Detail',
+                  components:{
+                        default:()=>import("@/components/NewGames/AppGame"),
+                        Detail:()=>import("@/components/Detail")
+                  },
+                  props:{
+                        Detail:true,
+                  }
+                  
+            },
+            {
+                  path:'Detail/2/:Id',
+                  components:{
+                        default:()=>import("@/components/NewGames/WebGame"),
+                        Detail:()=>import("@/components/Detail")
+                  },
+                  props:{
+                        Detail:true,
+                  }
+                  
+            },
+            {
+                  path:'Detail/3/:Id',
+                  components:{
+                        default:()=>import("@/components/NewGames/PCGame"),
+                        Detail:()=>import("@/components/Detail")
+                  },
+                  props:{
+                        Detail:true,
+                  }
+                  
+            },
+            {
+                  path : '/NewGames',
                   redirect : '/NewGames/AppGame'
             }
      ]

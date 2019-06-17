@@ -4,7 +4,7 @@ export default {
       path: '/GameStragies',
       name: 'GameStragies',
      // component: HelloWorld
-     component : ()=>import('@/components/GameStragies'),
+     component : ()=>import('@/views/GameStragies'),
      children : [
            {
                  path : 'AppStragies',
