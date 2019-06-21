@@ -17,6 +17,10 @@ export default {
             component :() =>import('@/components/Register'),
             },
             {
+                  path: 'ForgetPassword',
+                  component :() =>import('@/components/ForgetPassword'),
+                  },
+            {
                   path: 'Center',
                   name: 'personal',
                   component :() =>import('@/components/Mine/Center.vue'),

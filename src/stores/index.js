@@ -6,15 +6,7 @@ import login from './Login'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  },
+  
   modules:{
     login
   }

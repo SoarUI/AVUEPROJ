@@ -19,5 +19,5 @@ props:{
 <style scoped>
 #header{width:100%;height:50px;color:#fff;background:#e54847;border-bottom: 1px #e54847 solid;position: relative;}
 #header h1{font-size: 18px;text-align: center;line-height: 50px;font-weight: normal;}
-#header i{position: absolute;left: 5px;top: 5px;margin-top: -13px;font-size: 26px;}
+#header i{position: absolute;left: 5px;top: 15px;margin-top: -13px;font-size: 26px;}
 </style>
