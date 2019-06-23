@@ -1,9 +1,5 @@
 <template>
 <div>
-   <div> 个人中心:{{$store.state.login.username}}</div>
-   <div><a href="javascript:;" @touchstart="handlelogout">退出</a></div>
-   <div>当前身份：管理员<a href="/admin"  target="_blank">进入管理后台</a></div>
-   <div>当前身份：普通会员</div>
 </div>
 </template>
 
@@ -11,7 +7,7 @@
 import {messagebox} from '@/components/js'
 import axios from 'axios';
 export default {
-name : 'personal_center',
+name : 'admin',
 mounted()
 {
 },
@@ -34,7 +30,7 @@ beforeRouteEnter (to, from, next) {
   },
 methods:{
    handlelogout:function(){
-      this.axios.post('/api/user/logout').then((res)=>{
+      this.axios.post('/api/admin/logout').then((res)=>{
          var status =res.data.status;
          if(status ===0 ){
             var that =this;
@@ -43,7 +39,7 @@ methods:{
                conten:res.data.msg,
                ok:'确定',
                handleok(){
-                  that.$router.push('/Mine/Login');
+                  that.$router.push('/user/Login');
                }
             });
          }
@@ -53,6 +49,29 @@ methods:{
 }
 </script>
 
-<style>
-
+<style scoped>
+.el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: left;
+    line-height: 40px;
+  }
+  
+  .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+  
+   .el-container {
+    margin-bottom: 40px;
+  }
 </style>
