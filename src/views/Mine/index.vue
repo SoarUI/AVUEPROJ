@@ -1,6 +1,6 @@
 <template>
    <div class="login_body">
-    <Header />
+    <Header title="个人中心"/>
     <router-view/>
     <TabBar />
    </div>
