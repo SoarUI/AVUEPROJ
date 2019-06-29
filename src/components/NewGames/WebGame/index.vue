@@ -3,16 +3,16 @@
     <Loading v-if="isLoading" />
     <Scroller :handleToScroll="handleScroll" :handleToTouchEnd="handleTouchEnd" v-else>
     <ul>
-        <li v-for="item in NewGameList" :key="item.ItemID">
-            <div class="pic_show" @tap="handleDetail(item.ItemID)"><img src="images/movie_1.png"></div>
+        <li v-for="item in NewGameList" :key="item.Id">
+            <div class="pic_show" @tap="handleDetail(item.Id)"><img :src="item.coverimg"></div>
             <div class="info_list">
                 <h2>{{item.ItemName}}</h2>
-                <p>观众评<span class="grade">9.2</span></p>
-                <p>运营商:{{item.ImgDescUri}}</p>
-                <p>制作商：深圳乐瞬科技有限公司</p>
+                <p>观众评<span class="grade">{{item.grade}}</span></p>
+                <p>运营商:{{item.ISP}}</p>
+                <p>制作商：{{item.author}}</p>
 
             </div>
-            <div class="btn_mall" @tap="handleDetail(item.ItemID)">
+            <div class="btn_mall" @tap="handleDetail(item.Id)">
                 详情
             </div>
         </li>
@@ -48,11 +48,11 @@ methods:{
         if(pos.y > 15 ){
             this.pullDownMsg="";
             this.PageIndex++;
-            this.axios.get('/api/Users/GetTopNewGames?page='+this.PageIndex+'&rows='+this.PageSize).then( (res)=>{
-                if(res.statusText ==='OK'){
+            this.axios.get('/api/game/GetTopNewGames?type=2&page='+this.PageIndex+'&rows='+this.PageSize).then( (res)=>{
+                if(res.data.status ==='OK'){
                     this.pullDownMsg="更新成功..";
                     setTimeout(() => {
-                       this.NewGameList = res.data;  
+                       this.NewGameList = res.data.data;  
                        this.pullDownMsg="";
                     }, 1000);
                 }
@@ -61,9 +61,9 @@ methods:{
     }
 },
 mounted(){
-    this.axios.get('/Users/GetTopNewGames').then( (res)=>{
-        this.Msg = res.statusText;
-        this.NewGameList = res.data;
+    this.axios.get('/api/game/GetTopNewGames?type=2').then( (res)=>{
+        this.Msg = res.data.status;
+        this.NewGameList = res.data.data;
         this.$nextTick( ()=>{
             setTimeout(() => {
                         this.isLoading = false;

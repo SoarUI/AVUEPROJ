@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import {messagebox} from '@/components/js'
 
 
 export default {
@@ -44,8 +43,8 @@ handleToLogin(){
         console.log(res.data);
         if(status ===0)
         {
-            this.$store.commit('login/SET_TOKEN',{clientToken:res.data.clientID,userId:-1});
-            messagebox({
+            this.$store.commit('login/SET_TOKEN',{clientToken:res.data.clientID,icon:res.data.icon,userId:-1});
+            this.$mybox({
                 title:'登陆',
                 content:res.data.msg,
                 ok:'确定',
@@ -57,7 +56,7 @@ handleToLogin(){
         }
         else{
             //
-            messagebox({
+            this.$mybox({
                 title:'登陆失败',
                 content:res.data.msg,
                 ok:'确定'
