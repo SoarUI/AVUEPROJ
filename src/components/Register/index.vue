@@ -1,7 +1,7 @@
 <template>
     <div class="login_body">
     <div class="usercontainer">
-    邮箱:<input type="text" v-model="email" class="login_text"><button class="verifybtn" @touchstart="handleToSendverify">发送验证码</button>
+    邮箱:<input type="text" v-model="email" class="login_text"><button class="verifybtn"  @touchstart="handleToSendverify">{{verifycodestring}}</button>
     </div>
     <div>
         用户名：<input type="text" v-model="username" class="login_text">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {messagebox} from '@/components/js'
+import { setInterval, clearInterval } from 'timers';
 export default {
 name : 'Register',
 data(){
@@ -30,12 +30,16 @@ data(){
         username:'',
         password:'',
         verify:'',
-        email:''
-
+        email:'',
+        verifycodestring:'发送验证码',
+        DisableVerifybtn:false,
     }
 },
 methods:{
     handleToSendverify(){
+        if(this.email==="" || this.DisableVerifybtn){
+            return;
+        }
        this.axios.post('/api/user/verify',{
            email:this.email
        })
@@ -43,8 +47,18 @@ methods:{
            var status =res.data.status;
            if(status ===0)
         {
-
-            messagebox({
+            var count =60;
+            var timer=setInterval(()=>{
+                this.DisableVerifybtn = true;
+                this.verifycodestring='剩下:'+count +'秒';
+                if(count--==0){
+                    this.DisableVerifybtn=false;
+                    count=60;
+                    this.verifycodestring="发送验证码";
+                    clearTimeout(timer._id);
+                }
+            },1000);
+            this.$mybox({
                 title:'验证码',
                 content:res.data.msg+res.data.status,
                 ok:'确定'
@@ -53,7 +67,7 @@ methods:{
         }
         else{
             //
-            messagebox({
+            this.$mybox({
                 title:'验证码',
                 content:res.data.msg+res.data.status,
                 ok:'确定'
@@ -73,7 +87,7 @@ methods:{
            if(status ===0)
         {
             var that = this;
-            messagebox({
+            this.$mybox({
                 title:'注册',
                 content:res.data.msg+res.data.status,
                 ok:'确定',
@@ -85,7 +99,7 @@ methods:{
         }
         else{
             //
-            messagebox({
+            this.$mybox({
                 title:'注册',
                 content:res.data.msg+res.data.status,
                 ok:'确定'

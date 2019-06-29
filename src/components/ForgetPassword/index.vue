@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import {messagebox} from '@/components/js'
 export default {
 name:'forgetpassword',
 data(){
@@ -41,7 +40,7 @@ methods:{
            if(status ===0)
         {
 
-            messagebox({
+            this.$mybox({
                 title:'验证码',
                 content:res.data.msg +res.data.status,
                 ok:'确定'
@@ -50,7 +49,7 @@ methods:{
         }
         else{
             //
-            messagebox({
+            this.$mybox({
                 title:'验证码',
                 content:res.data.msg+res.data.status,
                 ok:'确定'
@@ -70,7 +69,7 @@ methods:{
            if(status ===0)
         {
             var that = this;
-            messagebox({
+            this.$mybox({
                 title:'密码修改',
                 content:res.data.msg+res.data.status,
                 ok:'确定',
@@ -82,7 +81,7 @@ methods:{
         }
         else{
             //
-            messagebox({
+            this.$mybox({
                 title:'密码修改',
                 content:res.data.msg+res.data.status,
                 ok:'确定'

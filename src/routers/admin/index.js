@@ -9,6 +9,11 @@ export default {
            name: 'users',
            component :() =>import('@/components/admin/users.vue'),
      },
+     {
+      path: 'map',
+      name: 'map',
+      component :() =>import('@/components/admin/mapapi.vue'),
+      },
     {
      path : '/admin',
      redirect : '/admin/users'

@@ -4,16 +4,16 @@
     <Scroller :handleToScroll="handleScroll" :handleToTouchEnd="handleTouchEnd" v-else>
     <ul>
         <li>{{pullDownMsg}}</li>
-          <li v-for="item in NewGameList" :key="item.ItemID" >
-            <div class="pic_show" @tap="handleDetail(item.ItemID)" ><img :src="item.ImgDescUri"></div>
+          <li v-for="item in NewGameList" :key="item.Id">
+            <div class="pic_show" @tap="handleDetail(item.Id)"><img :src="item.coverimg"></div>
             <div class="info_list">
                 <h2>{{item.ItemName}}</h2>
-                <p>观众评<span class="grade">9.2</span></p>
-                <p>运营商:{{item.ImgDescUri}}</p>
-                <p>制作商：{{Msg}}</p>
+                <p>好玩度<span class="grade">{{item.grade}}</span></p>
+                <p>运营商:{{item.ISP}}</p>
+                <p>发行商：{{item.author}}</p>
 
             </div>
-            <div class="btn_mall" @tap="handleDetail(item.ItemID)">
+            <div class="btn_mall" @tap="handleDetail(item.Id)">
                 详情
             </div>
         </li>
@@ -37,9 +37,9 @@ return{
 }
 },
 mounted(){
-    this.axios.get('/Users/GetTopNewGames').then( (res)=>{
-        this.Msg = res.statusText;
-        this.NewGameList = res.data;
+    this.axios.get('/api/game/GetTopNewGames?type=1').then( (res)=>{
+        this.Msg = res.data.status;
+        this.NewGameList = res.data.data;
         this.$nextTick( ()=>{
             setTimeout(() => {
                         this.isLoading = false;
@@ -67,7 +67,7 @@ methods:
         if(pos.y > 15 ){
             this.pullDownMsg="";
             this.PageIndex++;
-            this.axios.get('/api/Users/GetTopNewGames?page='+this.PageIndex+'&rows='+this.PageSize).then( (res)=>{
+            this.axios.get('/api/game/GetTopNewGames?type=1&page='+this.PageIndex+'&rows='+this.PageSize).then( (res)=>{
                 if(res.statusText ==='OK'){
                     this.pullDownMsg="更新成功..";
                     setTimeout(() => {

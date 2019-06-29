@@ -1,77 +1,93 @@
 <template>
 <div>
+  <el-table
+    :data="tableData"
+    style="width: 100%">
+    <el-table-column
+      label="注册时间"
+      prop="date">
+    </el-table-column>
+    <el-table-column
+      label="用户名"
+      prop="username">
+    </el-table-column>
+    <el-table-column
+      align="right">
+      <template slot="header" slot-scope="scope">
+        <el-input
+          v-model="search"
+          size="mini"
+          placeholder="输入关键字搜索"/>
+      </template>
+      <template slot-scope="scope">
+        <el-button
+          size="mini"
+          @click="handleFreeze(scope.$index, scope.row)">
+          {{scope.row.isfreeze?"已冻结":"未冻结"}}
+          </el-button>
+           <el-button
+          size="mini"
+          @click="handleResetPassword(scope.$index, scope.row)">
+          密码重置
+          </el-button>
+        <el-button
+          size="mini"
+          type="danger"
+          @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
 </div>
 </template>
 
 <script>
-import {messagebox} from '@/components/js'
 import axios from 'axios';
 export default {
-name : 'admin',
+name : 'usermodule',
 mounted()
 {
-},
-//组件内路由守卫
-beforeRouteEnter (to, from, next) {
-    // called before the route that renders this component is confirmed.
-    // does NOT have access to `this` component instance,
-    // because it has not been created yet when this guard is called!
-    axios.get('/api/user/getUsers').then((res)=>{
+    axios.post('/api/admin/getuserlist').then((res)=>{
        var status = res.data.status;
        if(status === 0){
-
-          next(vm=>{
-             vm.$store.commit('login/LOGININFO',{username:res.data.data.username,userId:-1});
-                       });
+          this.tableData =res.data.data.userlist;
        }else{
-          next('/Mine/Login');
+          this.$message("获取用户列表失败");
        }
     })
+},
+ data() {
+      return {
+        tableData:[],
+        search: ''
+      }
   },
 methods:{
-   handlelogout:function(){
-      this.axios.post('/api/admin/logout').then((res)=>{
-         var status =res.data.status;
-         if(status ===0 ){
-            var that =this;
-            messagebox({
-               title:'退出',
-               conten:res.data.msg,
-               ok:'确定',
-               handleok(){
-                  that.$router.push('/user/Login');
-               }
-            });
-         }
-      })
-   }
+   handleFreeze(index, row) {
+        console.log(index, row);
+        axios.post('/api/admin/freeze',{
+           email:row.email,
+           isfreeze:!row.isfreeze
+        })
+        .then((res)=>{
+           var status= res.data.status;
+            if(status === 0){
+              this.$message("操作成功");
+            }else{
+               this.$message("操作失败");
+            }
+        })
+
+      },
+      handleDelete(index, row) {
+        console.log(index, row);
+      },
+      handleResetPassword(index, row){
+
+      }
 }
 }
 </script>
 
 <style scoped>
-.el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: left;
-    line-height: 40px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-   .el-container {
-    margin-bottom: 40px;
-  }
+
 </style>

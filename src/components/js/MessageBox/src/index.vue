@@ -11,7 +11,7 @@
 
 <script>
 export default {
-name:'MessageBox'
+name:'MessageBox' //这个属性将被替代，上面的属性由创建时传入(页可以在这里定义data，到时再覆盖)
 }
 </script>
 
