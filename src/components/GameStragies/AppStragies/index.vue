@@ -9,7 +9,7 @@
             <div class="info_list">
                 <h2>{{item.Title}}</h2>
                 <i>{{item.eTitle}}</i>
-                <div class="Line"><span class="p-left">好玩度<span class="grade">{{item.grade}}</span></span><span class="p-right">作者:{{item.author}}</span></div>
+                <div class="Line"><span class="p-left">好玩度 <span class="grade">{{item.grade}}</span></span><span class="p-right">作者:{{item.author}}</span></div>
                 <div class="info">{{item.content}}</div>
             </div>
             <div class="btn_mall" @tap="handleDetail(item.Id)">

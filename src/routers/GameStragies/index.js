@@ -3,7 +3,6 @@ export default {
   
       path: '/GameStragies',
       name: 'GameStragies',
-     // component: HelloWorld
      component : ()=>import('@/views/GameStragies'),
      children : [
            {
@@ -20,6 +19,40 @@ export default {
             path : 'PCStragies',
             name: 'pcstragies',
             component:()=>import('@/components/GameStragies/PCStragies')
+      },
+     
+      {
+            path:'Detail/1/:Id',
+            components:{
+                  //default:()=>import("@/components/GameStragies/AppStragies"),
+                  Detail:()=>import("@/components/GameStragies/Detail.vue")
+            },
+            props:{
+                  Detail:true,
+            }
+            
+      },
+      {
+            path:'Detail/2/:Id',
+            components:{
+                  //default:()=>import("@/components/GameStragies/WebStragies"),
+                  Detail:()=>import("@/components/GameStragies/Detail.vue")
+            },
+            props:{
+                  Detail:true,
+            }
+            
+      },
+      {
+            path:'Detail/3/:Id',
+            components:{
+                  //default:()=>import("@/components/GameStragies/PCStragies"),
+                  Detail:()=>import("@/components/GameStragies/Detail.vue")
+            },
+            props:{
+                  Detail:true,
+            }
+            
       },
       {
             path : '/GameStragies',

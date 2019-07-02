@@ -2,16 +2,16 @@
     <footer id="footer">
         <ul>
             <router-link tag="li" to="/NewGames">
-                <i class="iconfont icon-setting"></i>
+                <i class="iconfont icon-zuixintaishifenxi"></i>
                 <p>新游戏</p>
             </router-link>
             <router-link tag="li" to="/GameStragies">
-                <i class="iconfont icon-setting"></i>
+                <i class="iconfont icon-gonglve"></i>
                 <p>游戏攻略</p>
             </router-link>
             <router-link tag="li" to="/Games">
                 <i class="iconfont icon-share"></i>
-                <p>游戏分享</p>
+                <p>游戏集萃</p>
             </router-link>
              <router-link tag="li" to="/Mine">
                 <i class="iconfont icon-View"></i>

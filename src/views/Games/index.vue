@@ -1,20 +1,21 @@
 <template>
    <div id="main">
-       <Header title="游戏分享"/>
+       <Header title="游戏集萃"/>
        <div id="content">
            <ul class="Game_Menu">
-                <router-link tag="li" class="App_Name" to="/NewGames/AppGame">
+                <router-link tag="li" class="App_Name" to="/Games/AppGames ">
                     <span>手机游戏</span>
                 </router-link>
-                <router-link tag="li" class="Web_Game" to="/NewGames/WebGame">
+                <router-link tag="li" class="Web_Game" to="/Games/WebGames">
                     <span>网页游戏</span>
                 </router-link>
-                <router-link tag="li" class="PC_Game" to="/NewGames/PCGame">
+                <router-link tag="li" class="PC_Game" to="/Games/PCGames">
                     <span>PC游戏</span>
                 </router-link>
            </ul>
+           <router-view />
         </div>
-       <router-view />
+         <router-view name="Detail" />
        <TabBar />
    </div>
 </template>

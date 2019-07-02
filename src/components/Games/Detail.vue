@@ -1,7 +1,7 @@
 <template>
     <div class="detailcontainer" >
         <Header title="详情页">
-            <i class="iconfont icon-fanhui" @touchstart="handleToback">&lt;</i>
+            <i class="iconfont icon-fanhui" @touchstart="handleToback"></i>
         </Header>
         <Loading v-if="isLoading" />
     <Scroller v-else>
