@@ -13,9 +13,9 @@
                     <span>PC游戏</span>
                 </router-link>
            </ul>
-       
        <router-view />
         </div>
+        <router-view name="Detail" />
        <TabBar />
    </div>
 </template>
