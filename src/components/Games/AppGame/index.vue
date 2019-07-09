@@ -1,10 +1,10 @@
 <template>
-<div class="_body" ref="_body">
+<div class="_body">
     <Loading v-if="isLoading" />
     <Scroller :handleToScroll="handleScroll" :handleToTouchEnd="handleTouchEnd" v-else>
     <ul>
         <li>{{pullDownMsg}}</li>
-          <li v-for="item in NewGameList" :key="item.Id">
+          <li v-for="item in AppGameList" :key="item.Id">
             <div class="pic_show" @tap="handleDetail(item.Id)"><img :src="item.coverimg"></div>
             <div class="info_list">
                 <h2>{{item.ItemName}}</h2>
@@ -25,10 +25,10 @@
 <script>
 import bscroll from 'better-scroll';
 export default {
-name:'AppGame',
+name:'AppGames',
 data(){
 return{
-    NewGameList:[],
+    AppGameList:[],
     Msg:'',
     pullDownMsg:'',
     PageIndex:0,
@@ -39,7 +39,7 @@ return{
 mounted(){
     this.axios.get('/api/game/GetGamelist?type=1').then( (res)=>{
         this.Msg = res.data.status;
-        this.NewGameList = res.data.data;
+        this.AppGameList = res.data.data;
         this.$nextTick( ()=>{
             setTimeout(() => {
                         this.isLoading = false;
@@ -71,7 +71,7 @@ methods:
                 if(res.statusText ==='OK'){
                     this.pullDownMsg="更新成功..";
                     setTimeout(() => {
-                       this.NewGameList = res.data;  
+                       this.AppGameList = res.data;  
                        this.pullDownMsg="";
                     }, 1000);
                 }

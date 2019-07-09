@@ -25,7 +25,7 @@ export default {
             path:'Detail/1/:Id',
             components:{
                   //default:()=>import("@/components/GameStragies/AppStragies"),
-                  Detail:()=>import("@/components/GameStragies/Detail.vue")
+                  Detail:()=>import("@/components/Mine/articleDetail.vue")
             },
             props:{
                   Detail:true,
@@ -36,7 +36,7 @@ export default {
             path:'Detail/2/:Id',
             components:{
                   //default:()=>import("@/components/GameStragies/WebStragies"),
-                  Detail:()=>import("@/components/GameStragies/Detail.vue")
+                  Detail:()=>import("@/components/Mine/articleDetail.vue")
             },
             props:{
                   Detail:true,
@@ -47,7 +47,7 @@ export default {
             path:'Detail/3/:Id',
             components:{
                   //default:()=>import("@/components/GameStragies/PCStragies"),
-                  Detail:()=>import("@/components/GameStragies/Detail.vue")
+                  Detail:()=>import("@/components/Mine/articleDetail.vue")
             },
             props:{
                   Detail:true,

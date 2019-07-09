@@ -2,7 +2,37 @@
 <template>
 <div>
    <el-container>
-      <el-header>{{$store.state.login.username}}</el-header>
+      <el-header>{{$store.state.login.username}}
+         <div class="breadbar">
+            <el-breadcrumb class="breadcrumb-container" separator-class="el-icon-arrow-right">
+               <el-breadcrumb-item v-for="item in levelList" :key="item.path" :to="item.path">{{item.name}}</el-breadcrumb-item>
+         </el-breadcrumb>
+         </div>
+         <div class="sidebar">
+             <div class="iconblock">
+               
+              <!-- <el-image
+               style="width: 50px; height: 50px;flex:1;"
+               :src="squareUrl"
+               :fit="fit"></el-image>-->
+                <el-badge :value="12" class="item" style="flex:1;">
+                  <el-button size="small">消息</el-button>
+               </el-badge>
+            </div>
+            <el-dropdown style="float:right;">
+               <span class="el-dropdown-link">
+                  下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+               </span>
+               <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>黄金糕</el-dropdown-item>
+                  <el-dropdown-item>狮子头</el-dropdown-item>
+                  <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                  <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                  <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+               </el-dropdown-menu>
+            </el-dropdown>
+         </div>
+      </el-header>
       <el-container>
          <el-aside width="200px">
             <el-menu
@@ -33,7 +63,7 @@
                   </el-menu-item>
                   <el-menu-item index="3" disabled>
                   <i class="el-icon-document"></i>
-                  <router-link tag="span" to="users" slot="title">游戏攻略</router-link>
+                  <router-link tag="span" to="mapapi" slot="title">游戏攻略</router-link>
                   </el-menu-item>
                   <el-menu-item index="4">
                   <i class="el-icon-setting"></i>
@@ -54,8 +84,23 @@
 import axios from 'axios';
 export default {
 name : 'admin',
+data(){
+   return {
+      levelList: [],
+       squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+   }
+},
+watch: {
+            $route() {
+                this.getBreadcrumb()
+            }
+        },
+        created(){
+            this.getBreadcrumb();
+        },
 mounted()
 {
+   //this.realList = this.$route.meta.routeList;
 },
 //组件内路由守卫
 beforeRouteEnter (to, from, next) {
@@ -74,6 +119,7 @@ beforeRouteEnter (to, from, next) {
                 isfreeze:res.data.data.isfreeze,
                 clientToken:res.data.data.clientID
                 });
+               // vm.realList = to.meta.routeList;
                        });
        }else{
           next('/Mine/Login');
@@ -96,7 +142,16 @@ methods:{
             });
          }
       })
-   }
+   },
+   getBreadcrumb() {
+                let matched = this.$route.matched.filter(item => item.name)
+                const first = matched[0];
+                if (first && first.name.trim().toLocaleLowerCase() 
+                !== 'admin'.toLocaleLowerCase()) {//如果不包含当前，则加上
+                    matched = [{ path: '/admin', meta: { title: 'admin' }}].concat(matched)
+                }
+                this.levelList = matched
+            }
 }
 }
 </script>
@@ -107,6 +162,7 @@ methods:{
     color: #333;
     text-align: left;
     line-height: 40px;
+    display:flex;
   }
   
   .el-aside {
@@ -124,5 +180,29 @@ methods:{
   
    .el-container {
     margin-bottom: 40px;
+  }
+  /**/
+  .el-header .sidebar{
+     float:right;
+     height:50px;
+     flex:1;
+  }
+  .el-header .breadbar{
+     float:left;
+     margin-left: 50px;
+     margin-top: 30px;
+     height:50px;
+     flex:1;
+     color: #D3DCE6;
+  }
+   .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
+  .iconblock{
+     float:right;display:flex;
   }
 </style>

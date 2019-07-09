@@ -6,11 +6,11 @@
         <Loading v-if="isLoading" />
     <Scroller v-else>
             <div class="info_list">
-                <h2>游戏名称:{{detailobj.Title}}</h2>
-                <i>英文名称:{{detailobj.eTitle}}</i>
+                <h2>游戏名称:{{detailobj.name}}</h2>
+                <i>英文名称:{{detailobj.ename}}</i>
                 <div class="Line"><span class="p-left">好玩度: <span class="grade">{{detailobj.grade}}</span></span><span class="p-right">作者:{{detailobj.author}}</span></div>
-                <div class="Line"><span class="p-left">发行方: {{detailobj.ISP}}</span><span class="p-right">发行日期:{{detailobj.author}}</span></div>
-                <div class="info">{{detailobj.content}}</div>
+                <div class="Line"><span class="p-left">发行方: {{detailobj.author}}</span><span class="p-right">发行日期:{{detailobj.releasedate}}</span></div>
+                <div class="info">{{detailobj.description}}</div>
             </div>
     </Scroller>
     </div>
@@ -20,7 +20,7 @@
 import Header from '@/components/Header'
 
 export default {
-name:'detailforstragies',
+name:'ennnnn',
 props:['Id'],
 components:{
     Header
@@ -28,7 +28,7 @@ components:{
 data(){
     return {
          isLoading:false,
-         detailobj:{type:Object,default:null}
+         detailobj:{type:Object,default:{}}
     }
 },
 methods:{
