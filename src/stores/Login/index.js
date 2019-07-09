@@ -24,6 +24,11 @@ const  mutations ={
     state.clientToken =payload.clientToken;
      //保存到本地
      window.localStorage.setItem('ClientToken',state.clientToken);
+ },
+ SET_ICON(state,payload){
+    state.icon =payload.icon;
+     //保存到本地
+     window.localStorage.setItem('icon',state.icon);
  }
 }
 export default {

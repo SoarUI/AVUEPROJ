@@ -3,34 +3,31 @@ export default {
   
       path: '/Games',
       name: 'Games',
-     // component: HelloWorld
      component : ()=>import('@/views/Games'),
      children:[
            {
                  path:'AppGames',
+                 name: 'GGameTypeApp',
                  component:()=>import('@/components/Games/AppGame')
            },
            {
             path: 'WebGames',
-            name: 'GameType1',
-            // component: HelloWorld
+            name: 'GGameType1',
             component : ()=>import('@/components/Games/WebGame')
             },
             {
                   path: 'PCGames',
-                  name: 'GameType2',
-                  // component: HelloWorld
+                  name: 'GGameType2',
                   component : ()=>import('@/components/Games/PCGame')
             },
             {
                   path:'Detail/1/:Id',
-                  name:'Detail',
                   components:{
                         default:()=>import("@/components/Games/AppGame"),
-                        Detail:()=>import("@/components/Detail")
+                        GameDetail:()=>import("@/components/Games/Detail")
                   },
                   props:{
-                        Detail:true,
+                        GameDetail:true,
                   }
                   
             },
@@ -38,10 +35,10 @@ export default {
                   path:'Detail/2/:Id',
                   components:{
                         default:()=>import("@/components/Games/WebGame"),
-                        Detail:()=>import("@/components/Detail")
+                        GameDetail:()=>import("@/components/Games/Detail")
                   },
                   props:{
-                        Detail:true,
+                        GameDetail:true,
                   }
                   
             },
@@ -49,10 +46,10 @@ export default {
                   path:'Detail/3/:Id',
                   components:{
                         default:()=>import("@/components/Games/PCGame"),
-                        Detail:()=>import("@/components/Detail")
+                        GameDetail:()=>import("@/components/Games/Detail")
                   },
                   props:{
-                        Detail:true,
+                        GameDetail:true,
                   }
                   
             },

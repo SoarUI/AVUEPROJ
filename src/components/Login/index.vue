@@ -43,7 +43,12 @@ handleToLogin(){
         console.log(res.data);
         if(status ===0)
         {
-            this.$store.commit('login/SET_TOKEN',{clientToken:res.data.clientID,icon:res.data.icon,userId:-1});
+            this.$store.commit('login/LOGININFO',
+            {clientToken:res.data.clientID,
+            icon:res.data.icon,
+            userId:-1,
+            isAdmin:res.data.isadmin
+            });
             this.$mybox({
                 title:'登陆',
                 content:res.data.msg,
@@ -72,7 +77,7 @@ handleToLogin(){
 .login_body{width:100%;}
 .login_body .usercontainer{position: relative;}
 .login_body .login_text{width:100%;height:40px;border:none;border-bottom: 1px solid #ccc;margin-bottom: 5px;outline: none;}
-.login_body .login_btn{width:100%;height:50px;padding:10px;}
+.login_body .login_btn{width:100%;height:50px;}
 .verifybtn{position: absolute;right:10px;top:10px;height:40px;}
 .login_body .login_btn input{width: 100%;height:50px;background: #e54847 ;border-radius: 3px;border:none;display:block;color:#fff;}
 .login_body .login_link{display:flex;flex-flow:row nowrap;justify-content: space-between;}

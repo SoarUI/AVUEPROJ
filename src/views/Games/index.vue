@@ -3,7 +3,7 @@
        <Header title="游戏集萃"/>
        <div id="content">
            <ul class="Game_Menu">
-                <router-link tag="li" class="App_Name" to="/Games/AppGames ">
+                <router-link tag="li" class="App_Name" to="/Games/AppGames">
                     <span>手机游戏</span>
                 </router-link>
                 <router-link tag="li" class="Web_Game" to="/Games/WebGames">
@@ -15,7 +15,7 @@
            </ul>
            <router-view />
         </div>
-         <router-view name="Detail" />
+         <router-view name="GameDetail" />
        <TabBar />
    </div>
 </template>
