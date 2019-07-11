@@ -56,7 +56,7 @@ beforeRouteEnter (to, from, next) {
           next(vm=>{
              vm.$store.commit('login/LOGININFO',{
                 username:res.data.data.username,
-                userId:-1,
+                userid:-1,
                 isadmin:res.data.data.isadmin,
                 isfreeze:res.data.data.isfreeze,
                 clientToken:res.data.data.clientID,

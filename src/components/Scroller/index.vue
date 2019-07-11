@@ -39,5 +39,5 @@ mounted(){
 
 
 <style>
-.scrollerWrapper{height:100%;}
+.scrollerWrapper{height:100%;float:left;}
 </style>
